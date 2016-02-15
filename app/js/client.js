@@ -1,56 +1,50 @@
 const React = require('react');
 const DOM = require('react-dom');
 
+//Used to create and display bear data!
+var BearsApp = React.createClass({
+  getInitialState: function() {
+    return {
+      name: '',
+      flavor: ''
+    };
+  },
 
-var MyComponent = React.createClass({
+  componentDidMount: function() {
+    this.serverRequest = $.get(this.props.source + '/bears', function (result) {
+      var bears = result[0];
+      this.setState({
+        name: 'Smokey',
+        flavor: 'Brown'
+      });
+    }
+    .bind(this));
+  },
+
+  componentWillUnmount: function() {
+    this.serverRequest.abort();
+  },
+
   render: function() {
     return (
-      <h2> My name is Yogi Bear </h2>
+      <div>
+        {this.state.name} the {this.state.flavor} bear.
+      </div>
     );
   }
 });
 
-DOM.render(<MyComponent /> , document.getElementById('bear'));
+DOM.render( <BearsApp />, document.getElementById('bear') );
 
 
 
-// var React = require('react');
-// var ReactDOM = require('react-dom');
-//
-// var BearsApp = React.createClass({
-//   getInitialState: function() {
-//     return {
-//       name: ''
-//       // bears = []
-//       // lastGistUrl: ''
-//     };
-//   },
-//
-//   componentDidMount: function() {
-//     this.serverRequest = $.get(this.props.source, function (result) {
-//       var bears = result[0];
-//       this.setState({
-//         name: bears.name
-//         // lastGistUrl: lastGist.html_url
-//       });
-//     }.bind(this));
-//   },
-//
-//   componentWillUnmount: function() {
-//     this.serverRequest.abort();
-//   },
-//
+
+// var MyComponent = React.createClass({
 //   render: function() {
 //     return (
-//       <div>
-//         {this.state.name}s last gist is
-//         // <a href={this.state.lastGistUrl}>here</a>.
-//       </div>
+//       <h2> My name is Yogi Bear </h2>
 //     );
 //   }
 // });
 //
-// ReactDOM.render(
-//   <BearsApp source="https://localhost:5000/api/bears" />,
-//   mountNode
-// );
+// DOM.render(<MyComponent /> , document.getElementById('bear') );

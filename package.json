@@ -1,5 +1,5 @@
 {
-  "name": "reatjsW6",
+  "name": "reactjsW6",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -29,6 +29,7 @@
     "webpack-stream": "^3.1.0"
   },
   "dependencies": {
+    "body-parser": "^1.15.0",
     "express": "^4.13.4",
     "mongoose": "^4.4.3",
     "react": "^0.14.7",
