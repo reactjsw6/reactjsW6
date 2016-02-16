@@ -11,7 +11,7 @@ var BearsApp = React.createClass({
   },
 
   componentDidMount: function() {
-    this.serverRequest = $.get(this.props.source + '/bears', function (result) {
+    this.serverRequest = $.get('/bears', function (result) {
       var bears = result[0];
       this.setState({
         name: 'Smokey',
