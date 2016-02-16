@@ -15,7 +15,7 @@ var BearsApp = React.createClass({
       var bears = result[0];
       this.setState({
         name: 'Smokey',
-        flavor: 'Brown'
+        flavor: 'whatever'
       });
     }
     .bind(this));
@@ -34,7 +34,8 @@ var BearsApp = React.createClass({
   }
 });
 
-DOM.render( <BearsApp />, document.getElementById('bear') );
+DOM.render(
+  <BearsApp source="localhost:3000/api/bears"/>, document.getElementById('bear') );
 
 
 
