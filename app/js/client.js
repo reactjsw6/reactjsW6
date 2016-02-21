@@ -1,56 +1,49 @@
 const React = require('react');
 const DOM = require('react-dom');
 
+var URI = "http://localhost:3000/api/bears";
 
-var MyComponent = React.createClass({
+var BearsApp = React.createClass({
+  getInitialState: function() {
+    this.getBears();
+    return {
+      bears: []
+    }
+  },
+
+  getBears: function() {
+    this.serverRequest = $.get(URI)
+      .then( (data) => {
+        data.forEach(function(bear) {
+          bear.editing = false;
+        });
+        this.setState( {bears:data} );
+      })
+  },
+
+  componentWillUnmount: function() {
+    this.serverRequest.abort();
+  },
+
+  //Render display data
   render: function() {
+    //Creating dynamic data
+    var displayData = this.state.bears.map(function (bears) {
+      return (
+        <div className="bearItem" key={bears._id}>
+          {bears.name} the bear loves {bears.fishPreference}
+        </div>
+      )
+    });
+    //Final return
+    //displayData is defined above
     return (
-      <h2> My name is Yogi Bear </h2>
-    );
+      <div className="bearsList">
+        {displayData}
+      </div>
+    )
   }
-});
 
-DOM.render(<MyComponent /> , document.getElementById('bear'));
+});//End of BearsApp
 
-
-
-// var React = require('react');
-// var ReactDOM = require('react-dom');
-//
-// var BearsApp = React.createClass({
-//   getInitialState: function() {
-//     return {
-//       name: ''
-//       // bears = []
-//       // lastGistUrl: ''
-//     };
-//   },
-//
-//   componentDidMount: function() {
-//     this.serverRequest = $.get(this.props.source, function (result) {
-//       var bears = result[0];
-//       this.setState({
-//         name: bears.name
-//         // lastGistUrl: lastGist.html_url
-//       });
-//     }.bind(this));
-//   },
-//
-//   componentWillUnmount: function() {
-//     this.serverRequest.abort();
-//   },
-//
-//   render: function() {
-//     return (
-//       <div>
-//         {this.state.name}s last gist is
-//         // <a href={this.state.lastGistUrl}>here</a>.
-//       </div>
-//     );
-//   }
-// });
-//
-// ReactDOM.render(
-//   <BearsApp source="https://localhost:5000/api/bears" />,
-//   mountNode
-// );
+DOM.render(<BearsApp /> , document.getElementById('bear') );
