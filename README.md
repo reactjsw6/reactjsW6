@@ -1,3 +1,20 @@
 # reactjsW6
 
-####Assignment: Make a simple client side CRUD app using a client side framework other than Angular. Include a writeup comparing and contrasting your app with the apps you've built so far in Angular. Submit a link to the project repo.
+####This project is a simple client side CRUD app using React as the client side framework. 
+
+####Technologies:
+
+  - React: Client-side framework (including React-router and React-dom)
+  - Gulp: Task runner
+  - Webpack: Module bundler (plus Webpack-stream to run Webpack as a stream to conveniently integrate with Gulp)
+  - Express: Server package  
+  - Babel: Javascript compiler (including Babel-loader to transpile JS files using Babel and Webpack, and Babel-preset-react to transform JSX into createElement calls)
+  - Mongoose: MongoDB object modeling tool designed to work in an asynchronous environment
+
+
+####The ReactJSW6 team:
+
+    Ardian Ajvazi
+    Joshua Ho
+    Stephen Salzer
+    Gene Troy
