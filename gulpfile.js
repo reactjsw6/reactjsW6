@@ -27,5 +27,10 @@ gulp.task('webpack:dev', () => {
    .pipe(gulp.dest('build/'));
 });
 
-gulp.task('build:dev', ['webpack:dev', 'html:dev']);
+gulp.task('watch' , () => {
+  gulp.watch(__dirname + '/app/js/client.js');
+  gulp.watch(__dirname + '/app/index.html');
+})
+
+gulp.task('build:dev', ['webpack:dev', 'html:dev' , 'watch']);
 gulp.task('default', ['build:dev']);

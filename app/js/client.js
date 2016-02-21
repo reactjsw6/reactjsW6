@@ -4,23 +4,48 @@ const DOM = require('react-dom');
 var URI = "http://localhost:3000/api/bears";
 
 var BearsApp = React.createClass({
+
+  //Start the server, run these things
+
   getInitialState: function() {
+    //This makes it so our requests can be handled as cross XML
+    // $.ajaxSetup( {
+    //   dataType: 'jsonp'
+    // });
     this.getBears();
     return { bears: [] };
+
   },
 
-  deleteBear: function(bearId) {
-    return () => {
-      var something = this.state.bears.filter(function(bear) {
-        if(bear._id === bearId) {
-          return false;
-        }else {
-          return true;
-        }
+  getBears: function() {
+    this.serverRequest = $.get(URI)
+    .then( (data) => {
+      console.log('Hello from inside getBears')
+      data.forEach(function(bear) {
+        bear.editing = false;
       });
-      this.setState({bears: something});
-    }
+      this.setState( { bears:data } );
+    });
   },
+
+  // deleteBear: function(bearId) {
+  //
+  //   this.serverRequest = $.delete(URI)
+  //     .then( (data) ) => {
+  //
+  //     }
+  //
+  //   return () => {
+  //     var something = this.state.bears.filter(function(bear) {
+  //       if(bear._id === bearId) {
+  //         return false;
+  //       }else {
+  //         return true;
+  //       }
+  //     });
+  //     this.setState({bears: something});
+  //   }
+  // },
 
   // editBear: function(id) {
   //   return () => {
@@ -33,28 +58,23 @@ var BearsApp = React.createClass({
   //   }
   // },
 
-  getBears: function() {
-    this.serverRequest = $.get(URI)
-    .then((data) => {
-      data.forEach(function(bear) {
-        bear.editing = false;
-      });
-      this.setState({bears:data});
-    });
-  },
-
   render: function() {
-    return (<ul> {this.state.bears.map((bear) => {
-      return <li key={bears._id}> {bear.name}, {bear.flavor}, {bear.fishPreference} <button onClick={this.deleteBear(bear._id)}>Delete</button>
-      <form key={bears._id}>
-      <input type = "text" name = "bearName" placeholder = "Bear Name"/>
-      <input type = "text" name = "bearFlavor" placeholder = "Bear Flavor"/>
-      <button type = "submit">Edit</button >
-      </form>
-      </li>
+    return (
 
-    })
-  }</ul>)
+      <h2> This is being rendered from Client </h2>
+      // <ul> {this.state.bears.map((bear) => {
+      //   return
+      //     <li key={bears._id}> {bear.name}, {bear.flavor}, {bear.fishPreference}
+      //       <button onClick={this.deleteBear(bear._id)}>Delete</button>
+      //       <form key={bears._id}>
+      //         <input type = "text" name = "bearName" placeholder = "Bear Name"/>
+      //         <input type = "text" name = "bearFlavor" placeholder = "Bear Flavor"/>
+      //       <button type = "submit">Edit</button >
+      //       </form>
+      //     </li>
+      //   })}
+      // </ul>
+    )
   }
 });
 
