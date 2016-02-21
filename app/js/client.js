@@ -47,9 +47,9 @@ var BearsApp = React.createClass({
     return (<ul> {this.state.bears.map((bear) => {
       return <li key={bears._id}> {bear.name}, {bear.flavor}, {bear.fishPreference} <button onClick={this.deleteBear(bear._id)}>Delete</button>
       <form key={bears._id}>
-      < input type = "text" name = "bearName" placeholder = "Bear Name"/>
-      < input type = "text" name = "bearFlavor" placeholder = "Bear Flavor"/>
-      < button type = "submit" > Edit < /button >
+      <input type = "text" name = "bearName" placeholder = "Bear Name"/>
+      <input type = "text" name = "bearFlavor" placeholder = "Bear Flavor"/>
+      <button type = "submit">Edit</button >
       </form>
       </li>
 
