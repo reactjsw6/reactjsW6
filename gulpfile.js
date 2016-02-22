@@ -28,8 +28,8 @@ gulp.task('webpack:dev', () => {
 });
 
 gulp.task('watch' , () => {
-  gulp.watch(__dirname + '/app/js/client.js');
-  gulp.watch(__dirname + '/app/index.html');
+  gulp.watch(__dirname + '/app/js/*.js' , ['webpack:dev']);
+  gulp.watch(__dirname + '/app/*.html' , ['html:dev']);
 })
 
 gulp.task('build:dev', ['webpack:dev', 'html:dev' , 'watch']);
