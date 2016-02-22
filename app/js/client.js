@@ -125,9 +125,9 @@ var BearsApp = React.createClass({
         </table>
         <div>
           <ul>
-          <li>Name<input name="name" type="text" onChange={this.handleUpdate("new")}></input></li>
-          <li>Fish Preference<input name="fishPreference" type="text" onChange={this.handleUpdate("new")}></input></li>
-          <li><button onClick={this.newBear} className="btn btn-basic glyphicon glyphicon-pencil"></button></li>
+          <li>Name:<input name="name" type="text" onChange={this.handleUpdate("new")}></input></li>
+          <li>Fish Preference:<input name="fishPreference" type="text" onChange={this.handleUpdate("new")}></input></li>
+          <button onClick={this.newBear} className="btn btn-basic glyphicon glyphicon-pencil"> Save</button>
           </ul>
         </div>
       </div>
