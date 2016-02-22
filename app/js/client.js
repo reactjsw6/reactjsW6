@@ -22,7 +22,7 @@ var BearsApp = React.createClass({
   deleteBear: function(bearId) {
     return () => {
       var holder = this.state.bears.filter(function(bear) {
-        if (bear._id === bearId._id) return false;
+        if (bear._id === bearId) return false;
         return true;
       });
       //
@@ -36,16 +36,23 @@ var BearsApp = React.createClass({
     };
   },
 
-  // editBear: function(id) {
-  //   return () => {
-  //     var something = this.state.bears.map(function(bear) {
-  //       if(id === bear._id) {
-  //         return bear;
-  //       }
-  //     });
-  //     this.setState({bears: something});
-  //   }
-  // },
+   updateBear: function(bear) {
+
+     event.preventDefault();
+     var bearData = {
+       name: bear.target.children['bear-name'].value,
+       fishPreference: bear.target.children['bear-fish'].value
+     }
+
+      return () => {
+        var something = this.state.bears.map( (bear) => {
+          if (id === bear._id) bear.editing = true;
+          return bear;
+        });
+        this.setState( { bears: something } );
+        console.log('Updating Bear')
+      };
+    },
 
   render: function() {
     // .map takes each object in data and uses the following specs to create HTML
@@ -54,16 +61,16 @@ var BearsApp = React.createClass({
         //HTML
           <tr key={bear._id}>
             <td>
-              <input type="text" defaultValue={bear.name}></input>
+              <input type="text" name='bear-name' defaultValue={bear.name}></input>
             </td>
             <td>
-              <input type="text" defaultValue={bear.fishPreference}></input>
+              <input type="text" name='bear-fish' defaultValue={bear.fishPreference}></input>
             </td>
             <td>
-              <button onClick={this.deleteBear(bear._id)} className="btn btn-danger glyphicon glyphicon-remove"></button>
+              <button  onClick={this.deleteBear(bear._id)} className="btn btn-danger glyphicon glyphicon-remove"></button>
             </td>
             <td>
-              <button className="btn btn-basic glyphicon glyphicon-pencil"></button>
+              <button onClick={this.updateBear(bear._id)} className="btn btn-basic glyphicon glyphicon-pencil"></button>
             </td>
           </tr>
       )
@@ -82,42 +89,6 @@ var BearsApp = React.createClass({
       </table>
     )
   }
-
 });
-
-    // return (
-    //   <h2> This is being rendered from Client </h2>
-    //   <ul>
-    //     {this.state.bears.map( (bear) => {
-    //       return
-    //         <li key={bears._id}> {bear.name}, {bear.flavor}, {bear.fishPreference}
-    //           <button onClick={this.deleteBear(bear._id)}>Delete</button>
-    //           <form key={bears._id}>
-    //             <input type = "text" name = "bearName" placeholder = "Bear Name"/>
-    //             <input type = "text" name = "bearFlavor" placeholder = "Bear Flavor"/>
-    //           <button type = "submit">Edit</button >
-    //           </form>
-    //         </li>
-    //       })}
-    //   </ul>
-    // )
-
-
-
-
-// render: function() {
-//     var commentNodes = this.props.data.map(function(comment) {
-//       return (
-//         <Comment author={comment.author} key={comment.id}>
-//           {comment.text}
-//         </Comment>
-//       );
-//     });
-//     return (
-//       <div className="commentList">
-//         {commentNodes}
-//       </div>
-//     );
-//   }
 
 DOM.render(<BearsApp /> , document.getElementById('bears'));
