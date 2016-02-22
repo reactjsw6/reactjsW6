@@ -25,7 +25,7 @@ var BearsApp = React.createClass({
         if (bear._id === bearId) return false;
         return true;
       });
-      //
+
       this.setState({ bears: holder });
       $.ajax({
         url: URI + '/' + bearId,
@@ -36,23 +36,25 @@ var BearsApp = React.createClass({
     };
   },
 
-   updateBear: function(bear) {
+ updateBear: function(bear) {
 
-     event.preventDefault();
-     var bearData = {
-       name: bear.target.children['bear-name'].value,
-       fishPreference: bear.target.children['bear-fish'].value
-     }
+   console.log('Hello I am Update');
 
-      return () => {
-        var something = this.state.bears.map( (bear) => {
-          if (id === bear._id) bear.editing = true;
-          return bear;
-        });
-        this.setState( { bears: something } );
-        console.log('Updating Bear')
-      };
-    },
+  //  event.preventDefault();
+  //  var bearData = {
+  //    name: bear.target.children['bear-name'].value,
+  //    fishPreference: bear.target.children['bear-fish'].value
+  //  }
+   //
+  //   return () => {
+  //     var something = this.state.bears.map( (bear) => {
+  //       if (id === bear._id) bear.editing = true;
+  //       return bear;
+  //     });
+  //     this.setState( { bears: something } );
+  //     console.log('Updating Bear')
+  //   };
+  },
 
   render: function() {
     // .map takes each object in data and uses the following specs to create HTML
@@ -91,4 +93,41 @@ var BearsApp = React.createClass({
   }
 });
 
+var BearFormApp = React.createClass({
+
+  getInitialState: function() {
+    return null;
+  },
+
+  render: function() {
+    return (
+      <div className="container">
+        <table className="table">
+          <thead>
+            <tr>
+              <th>
+                <h3> Add a new Bear </h3>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <input type="text"></input>
+              </td>
+              <td>
+                <input type="text"></input>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button className="btn btn-primary">Add New Bear</button>
+      </div>
+    )
+  }
+
+});
+
+
 DOM.render(<BearsApp /> , document.getElementById('bears'));
+DOM.render(<BearFormApp /> , document.getElementById('bears-form'));
