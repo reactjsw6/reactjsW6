@@ -1,5 +1,44 @@
 # reactjsW6
 
+## Running
+
+### Install packages
+
+```bash
+> npm install
+```
+
+### Install gulp
+
+```bash
+> npm install --save-dev gulp
+```
+
+### Build assets
+
+```bash
+> ./node_modules/.bin/gulp
+```
+
+### Start mongodb
+
+```bash
+> mongod --config /usr/local/etc/mongod.conf
+```
+
+### Run *the* server
+
+```bash
+> node ./server.js
+```
+
+### CHECK YO' SHIT OUT
+
+```
+open http://localhost:5000
+```
+
+
 ####This project is a simple client side CRUD app using React as the client side framework.
 
 
