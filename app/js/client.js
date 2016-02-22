@@ -93,39 +93,38 @@ var BearsApp = React.createClass({
   }
 });
 
+//THIS IS USED FOR THE POST REQUEST - Hard to set it up in
+//BearApp.
 var BearFormApp = React.createClass({
+    //Written this way because getInitialState doesn't like
+    //anything except this.
+  postBear: function(event){
+    event.preventDefault();
+    //Gather data from the form (somehow)
+    var newBearData = {
+      name: event.target.children['name'].value,
+      flavor: 'Awesome',
+      fishPreference: event.target.children['fish'].value
+    };
+    console.log(newBearData)
 
-  getInitialState: function() {
-    return null;
+    $.post(URI , newBearData , function(data) {
+      console.log(data);
+      document.location.reload(true);
+    });
   },
 
   render: function() {
     return (
       <div className="container">
-        <table className="table">
-          <thead>
-            <tr>
-              <th>
-                <h3> Add a new Bear </h3>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <input type="text"></input>
-              </td>
-              <td>
-                <input type="text"></input>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <button className="btn btn-primary">Add New Bear</button>
+        <form onSubmit={this.postBear}>
+          <input type="text" name="name"></input>
+          <input type="text" name="fish"></input>
+          <button type='submit' className="btn btn-primary" >Add New Bear</button>
+        </form>
       </div>
     )
   }
-
 });
 
 
