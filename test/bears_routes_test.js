@@ -4,7 +4,7 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 const mongoose = require('mongoose');
 process.env.MONGOLAB_URI = 'mongodb://localhost/bears_app_test';
-const server = require(__dirname + '/../server');
+const server = require(__dirname + '/../lib/bear_server_3000');
 const Bear = require(__dirname + '/../models/bear');
 
 describe('the bears api', () => {
